@@ -11,14 +11,4 @@ public class BranchModel
     public string? PhoneNo { get; set; }
     public bool status { get; set; }
     public DateTime CreatedDate { get; set; }
-    public DateOnly SystemDate { get; set; }
-    public TimeOnly CreateTime { get; set; }
-
-
-
-
-
-
-
-    
 }

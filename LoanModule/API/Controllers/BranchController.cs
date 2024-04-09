@@ -21,5 +21,11 @@ namespace LoanModule.API.Controllers
             await _branchService.CreateBranchAsnyc(model);
             return Ok();
         }
+        [HttpGet("GetAllBranchList")]
+        public async Task<IActionResult> GetAllBranchListAsync()
+        {
+            var BranchList= await _branchService.GetBranchAsync();
+            return Ok(BranchList);
+        }
     }
 }

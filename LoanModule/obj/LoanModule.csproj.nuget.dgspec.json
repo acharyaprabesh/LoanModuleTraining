@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Prabesh\\Desktop For Me\\Training\\LoanModule\\LoanModule\\LoanModule.csproj": {}
+    "C:\\Prabesh\\Desktop For Me\\Training\\LoanModuleTraining\\LoanModule\\LoanModule.csproj": {}
   },
   "projects": {
-    "C:\\Prabesh\\Desktop For Me\\Training\\LoanModule\\LoanModule\\LoanModule.csproj": {
+    "C:\\Prabesh\\Desktop For Me\\Training\\LoanModuleTraining\\LoanModule\\LoanModule.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Prabesh\\Desktop For Me\\Training\\LoanModule\\LoanModule\\LoanModule.csproj",
+        "projectUniqueName": "C:\\Prabesh\\Desktop For Me\\Training\\LoanModuleTraining\\LoanModule\\LoanModule.csproj",
         "projectName": "LoanModule",
-        "projectPath": "C:\\Prabesh\\Desktop For Me\\Training\\LoanModule\\LoanModule\\LoanModule.csproj",
+        "projectPath": "C:\\Prabesh\\Desktop For Me\\Training\\LoanModuleTraining\\LoanModule\\LoanModule.csproj",
         "packagesPath": "C:\\Users\\prabesh\\.nuget\\packages\\",
-        "outputPath": "C:\\Prabesh\\Desktop For Me\\Training\\LoanModule\\LoanModule\\obj\\",
+        "outputPath": "C:\\Prabesh\\Desktop For Me\\Training\\LoanModuleTraining\\LoanModule\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\prabesh\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
             "Dapper": {
               "target": "Package",
               "version": "[2.1.35, )"

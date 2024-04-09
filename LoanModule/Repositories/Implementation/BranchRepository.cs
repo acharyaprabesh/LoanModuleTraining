@@ -1,5 +1,6 @@
 ﻿using LoanModule.API.Models;
 using LoanModule.API.RequestModel;
+using LoanModule.API.ResponseModel;
 using LoanModule.Repositories.Interface;
 using System.Net;
 
@@ -15,7 +16,7 @@ namespace LoanModule.Repositories.Implementation
           
         }
 
-        public async Task CreateBranchAsnyc(BranchRequestModel branch)
+        public async Task CreateBranchAsnyc(BranchModel branch)
         {
             var result = await this.ExecuteAsync(
                 "insert into tblBranch(BranchCode,BranchName,Address,PhoneNo,status,CreatedDate)" +
@@ -31,6 +32,14 @@ namespace LoanModule.Repositories.Implementation
             }
 
                ); ;
+        }
+
+        async Task<List<BranchResponseModel>> IBranchRepository.GetBranchAsync()
+        {
+            var BranchList = await this.GetQueryResultAsync<BranchResponseModel>(
+                "select * from tblBranch"
+                );
+            return BranchList;
         }
     }
 }
