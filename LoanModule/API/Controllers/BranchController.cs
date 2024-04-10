@@ -16,10 +16,10 @@ namespace LoanModule.API.Controllers
         }
 
         [HttpPost("CreateBranch")]
-        public async Task<IActionResult> CreateBranchAsync(BranchRequestModel model)
+        public async Task<IActionResult> CreateBranchAsync(List<BranchRequestModel> model)
         {
-            await _branchService.CreateBranchAsnyc(model);
-            return Ok();
+            var response= await _branchService.CreateBranchAsnyc(model.FirstOrDefault());
+            return Ok(response);
         }
         [HttpGet("GetAllBranchList")]
         public async Task<IActionResult> GetAllBranchListAsync()

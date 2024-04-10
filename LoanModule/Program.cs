@@ -1,3 +1,4 @@
+using LoanModule.Middleware;
 using LoanModule.Repositories.Implementation;
 using LoanModule.Repositories.Interface;
 using LoanModule.Service.Implementation;
@@ -26,7 +27,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseAuthorization();
 
 app.MapControllers();

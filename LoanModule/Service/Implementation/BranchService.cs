@@ -18,7 +18,7 @@ namespace LoanModule.Service.Implementation
             _autoMapper = mapper;
             _genericRepository = genericRepository; 
         }
-        public async Task CreateBranchAsnyc(BranchRequestModel branch)
+        public async Task<SystemResponse> CreateBranchAsnyc(BranchRequestModel branch)
         {
             //BranchModel branchModel = new()
             //{
@@ -30,10 +30,17 @@ namespace LoanModule.Service.Implementation
             //    CreatedDate=branch.CreatedDate
 
             //};
-            var BranchMappingModel = _autoMapper.Map<BranchParam>(branch);
-            BranchMappingModel.Flag = 'c';
-            var response = await _genericRepository.InsertAsync("spBranch", BranchMappingModel);
-            return;
+            try
+            {
+                var BranchMappingModel = _autoMapper.Map<BranchParam>(branch);
+                BranchMappingModel.Flag = 'c';
+                var response = await _genericRepository.InsertAsync("spBranch", BranchMappingModel);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException(ex.Message);
+            }
           // return _repository.CreateBranchAsnyc(BranchMappingModel);
         }
 

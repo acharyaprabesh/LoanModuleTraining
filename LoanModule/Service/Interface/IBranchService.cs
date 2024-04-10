@@ -5,7 +5,7 @@ namespace LoanModule.Service.Interface
 {
     public interface IBranchService
     {
-        Task CreateBranchAsnyc(BranchRequestModel branch);
+        Task<SystemResponse> CreateBranchAsnyc(BranchRequestModel branch);
         Task<List<BranchResponseModel>> GetBranchAsync();
     }
 }
