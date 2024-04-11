@@ -1,5 +1,6 @@
 ﻿using LoanModule.API.RequestModel;
 using LoanModule.Service.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,7 @@ namespace LoanModule.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BranchController : ControllerBase
     {
         private IBranchService _branchService;
@@ -16,6 +18,7 @@ namespace LoanModule.API.Controllers
         }
 
         [HttpPost("CreateBranch")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> CreateBranchAsync(List<BranchRequestModel> model)
         {
             var response= await _branchService.CreateBranchAsnyc(model.FirstOrDefault());

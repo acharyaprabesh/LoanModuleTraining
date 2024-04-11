@@ -10,6 +10,7 @@ namespace LoanModule.Mapping
         {
                 CreateMap<BranchModel,BranchRequestModel>().ReverseMap();
                 CreateMap<BranchParam,BranchRequestModel>().ReverseMap();
+                CreateMap<LoginModel, LoginRequestModel>().ReverseMap();
         }
     }
 }
