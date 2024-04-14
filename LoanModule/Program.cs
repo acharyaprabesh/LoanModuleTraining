@@ -23,6 +23,7 @@ builder.Services.AddTransient<IBranchRepository, BranchRepository>();
 builder.Services.AddTransient<IGenericRepository, GenericRepositroy>();
 builder.Services.AddTransient<IDapperRepository, DapperRepository>();
 builder.Services.AddTransient<IAuthService, AuthService>();
+builder.Services.AddTransient<IUtilityService, UtilityService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

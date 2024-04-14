@@ -8,5 +8,6 @@
         public string? PhoneNo { get; set; }
         public bool status { get; set; }
         public DateTime CreatedDate { get; set; }
+        public int? CreatedBy { get; set; }
     }
 }

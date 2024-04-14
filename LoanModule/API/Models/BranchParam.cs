@@ -10,5 +10,6 @@
         public string? PhoneNo { get; set; }
         public bool status { get; set; }
         public DateTime CreatedDate { get; set; }= DateTime.Now;
+        public int? CreatedBy { get; set; }
     }
 }

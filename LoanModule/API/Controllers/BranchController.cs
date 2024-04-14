@@ -3,6 +3,7 @@ using LoanModule.Service.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace LoanModule.API.Controllers
 {
@@ -19,9 +20,12 @@ namespace LoanModule.API.Controllers
 
         [HttpPost("CreateBranch")]
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> CreateBranchAsync(List<BranchRequestModel> model)
+        public async Task<IActionResult> CreateBranchAsync(BranchRequestModel model)
         {
-            var response= await _branchService.CreateBranchAsnyc(model.FirstOrDefault());
+            var Name = this.User.FindFirst(ClaimTypes.NameIdentifier);
+            var UserId = this.User.FindFirstValue("UserId");
+            model.CreatedBy = int.Parse(UserId);
+            var response= await _branchService.CreateBranchAsnyc(model);
             return Ok(response);
         }
         [HttpGet("GetAllBranchList")]
