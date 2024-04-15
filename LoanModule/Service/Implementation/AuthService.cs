@@ -32,24 +32,39 @@ namespace LoanModule.Service.Implementation
             {
                 LoginMap.Flag = 'D';
                 var UseModel = await _genericRepository.GetAsync<UserDetailsModel>("spAuth", LoginMap);
-                string Token = this.CreateToken(UseModel);
+
+                LoginMap.Flag = 'P';
+                var PermissionList = await _genericRepository.GetAllAsync<PermissionModel>("spAuth", LoginMap);
+
+                string Token = this.CreateToken(UseModel, PermissionList);
                 response.Message = Token;
             }
             return response;
         }
 
-        private string CreateToken(UserDetailsModel clientDetails)
+        private string CreateToken(UserDetailsModel clientDetails,List<PermissionModel> permissions)
         {
+
+            var permissionsClaims = new List<Claim>();
+
+            foreach (var item in permissions)
+            {
+                permissionsClaims.Add(new Claim(item.PermissionType, item.PermissionValue));
+            }
+
+            var claims = new List<Claim>
+            {
+                        new Claim(ClaimTypes.Name, clientDetails.Name),
+                       new Claim(ClaimTypes.StreetAddress, clientDetails.Address),
+                       new Claim("UserId", clientDetails.UserID.ToString()),
+                       new Claim(ClaimTypes.Role,clientDetails.Role)
+            }.Union(permissionsClaims);
+
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(this._configuration.GetSection("AppSettings:Token").Value);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new Claim[]{
-                       new Claim(ClaimTypes.Name, clientDetails.Name),
-                       new Claim(ClaimTypes.StreetAddress, clientDetails.Address),
-                       new Claim("UserId", clientDetails.UserID.ToString()),
-                       new Claim(ClaimTypes.Role,clientDetails.Role),
-                   }),
+                Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.UtcNow.AddMinutes(3),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };

@@ -28,6 +28,7 @@ namespace LoanModule.API.Controllers
             var response= await _branchService.CreateBranchAsnyc(model);
             return Ok(response);
         }
+        [Authorize(Policy = "Branch.Read")]
         [HttpGet("GetAllBranchList")]
         public async Task<IActionResult> GetAllBranchListAsync()
         {

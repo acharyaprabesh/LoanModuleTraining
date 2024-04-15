@@ -1,9 +1,11 @@
 using LoanModule.Middleware;
+using LoanModule.Permission;
 using LoanModule.Repositories.Implementation;
 using LoanModule.Repositories.Interface;
 using LoanModule.Service.Implementation;
 using LoanModule.Service.Interface;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Shared.Repositories.Implementation;
@@ -24,6 +26,8 @@ builder.Services.AddTransient<IGenericRepository, GenericRepositroy>();
 builder.Services.AddTransient<IDapperRepository, DapperRepository>();
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IUtilityService, UtilityService>();
+builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
+builder.Services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
