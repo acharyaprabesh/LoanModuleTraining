@@ -15,7 +15,7 @@ namespace LoanModule.API.Controllers
         {
                 _authService=authService;
         }
-        [HttpPost("GetLoginToke")]
+        [HttpPost("GetLoginToken")]
         [AllowAnonymous]
         public async Task<IActionResult> GetLoginTokenAsnyc(LoginRequestModel model)
         {

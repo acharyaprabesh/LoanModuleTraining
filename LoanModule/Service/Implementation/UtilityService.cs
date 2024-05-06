@@ -1,4 +1,5 @@
 ﻿using LoanModule.API.RequestModel;
+using LoanModule.API.ResponseModel;
 using LoanModule.Repositories.Interface;
 using LoanModule.Service.Interface;
 using System.Data;
@@ -26,6 +27,11 @@ namespace LoanModule.Service.Implementation
             var report = await _genericRepository.GetAllAsync<object>(StoreProcedureName, Parameter);
 
             return report;
+        }
+
+        public async Task<List<DropDownResponseModel>> GetDropDownListAsync(string DropDownName, string? FilterValue)
+        {
+          return await  _genericRepository.GetAllAsync<DropDownResponseModel>("spDropDown", new { DropDownName = DropDownName, FilterValue = FilterValue });
         }
     }
 }
